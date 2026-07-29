@@ -131,6 +131,11 @@ export function Footer() {
                   Contact Us
                 </Link>
               </li>
+              <li>
+                <Link href="/verify/certificates/preview" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors flex items-center gap-1">
+                  Verify Certificate
+                </Link>
+              </li>
             </ul>
           </div>
 
