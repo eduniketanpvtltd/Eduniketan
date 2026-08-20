@@ -496,9 +496,19 @@ export default function RecruitmentAdminTab() {
 
   // ── Save form (create or update) ─────────────────────────────────────────
   const handleSaveForm = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     const curr = getActiveDraft();
-    if (!curr.title.trim()) return;
+    
+    if (!curr.title.trim()) {
+      alert('Please enter a Form Title.');
+      return;
+    }
+    
+    const invalidField = (curr.fields || []).find(f => !f.label.trim());
+    if (invalidField) {
+      alert('Please provide a label for all form fields.');
+      return;
+    }
 
     setSavingForm(true);
     try {
@@ -530,13 +540,17 @@ export default function RecruitmentAdminTab() {
         setEditingForm(null);
         setDraft(defaultDraft);
         setTimeout(() => setFormSuccess(''), 3000);
+      } else {
+        alert(data.error || 'Failed to save form');
       }
     } catch (err) {
       console.error('Error saving form:', err);
+      alert('Error saving form. Please check your connection.');
     } finally {
       setSavingForm(false);
     }
   };
+
 
   // ── Toggle publish ────────────────────────────────────────────────────────
   const togglePublish = async (form) => {
@@ -702,19 +716,19 @@ export default function RecruitmentAdminTab() {
                 </div>
               )}
 
-              <form onSubmit={handleSaveForm} className="space-y-4">
+              <div className="space-y-4">
                 {/* Title */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Form Title *</label>
                   <input
                     type="text"
-                    required
                     value={activeDraft.title}
                     onChange={(e) => setActiveDraft({ ...activeDraft, title: e.target.value })}
                     placeholder="e.g. Campus Recruitment Drive 2026"
                     className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
+
 
                 {/* Description */}
                 <div>
@@ -814,7 +828,8 @@ export default function RecruitmentAdminTab() {
 
                 {/* Save button */}
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={handleSaveForm}
                   disabled={savingForm || !activeDraft.title.trim()}
                   className="w-full py-3 bg-gradient-to-r from-blue-700 to-indigo-600 text-white font-bold text-sm rounded-2xl shadow-md hover:shadow-lg transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   id="save-recruitment-form-btn"
@@ -827,7 +842,7 @@ export default function RecruitmentAdminTab() {
                     <><Plus className="w-4 h-4" /> Create Form</>
                   )}
                 </button>
-              </form>
+              </div>
             </Card>
           </div>
 
