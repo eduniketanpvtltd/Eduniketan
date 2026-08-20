@@ -4,9 +4,7 @@ import { supabase } from './supabase.js';
 
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'db.json');
 
-const isSupabaseConfigured =
-  Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-  !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('xyzcompany');
+const isSupabaseConfigured = true;
 
 const defaultDbData = {
   recruitmentForms: [],
