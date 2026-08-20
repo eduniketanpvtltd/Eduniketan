@@ -2,8 +2,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ckjkngdidervdyfzosyv.supabase.co';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNramtuZ2RpZGVydmR5Znpvc3l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ1NDE4MDEsImV4cCI6MjEwMDExNzgwMX0.W2iftTGoRqkdExsY8Dq0TRIruLQWes2qEgja95Cj5e8';
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || supabaseAnonKey;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 /**
  * Upload photo file to Supabase Storage bucket 'eduniketan-gallery'
