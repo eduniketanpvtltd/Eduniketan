@@ -1,5 +1,55 @@
 -- Eduniketan Production Supabase Database Schema
 
+-- ============================================================
+-- RECRUITMENT FORM SYSTEM (added 2026-08)
+-- ============================================================
+
+-- 6. Recruitment Forms Table (dynamic form builder schema)
+CREATE TABLE IF NOT EXISTS public.recruitment_forms (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT DEFAULT '',
+  fields JSONB DEFAULT '[]'::jsonb, -- Array of field definition objects
+  is_published BOOLEAN DEFAULT false,
+  deadline DATE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- 7. Recruitment Submissions Table
+CREATE TABLE IF NOT EXISTS public.recruitment_submissions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  form_id UUID REFERENCES public.recruitment_forms(id) ON DELETE CASCADE,
+  form_title TEXT NOT NULL,
+  data JSONB DEFAULT '{}'::jsonb, -- { fieldId: value } map
+  status TEXT DEFAULT 'NEW', -- NEW | REVIEWED | SHORTLISTED | REJECTED
+  ip_address TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Index for fast filtering by form
+CREATE INDEX IF NOT EXISTS idx_recruitment_submissions_form_id
+  ON public.recruitment_submissions(form_id);
+
+-- Recruitment file storage bucket
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('eduniketan-recruitment', 'eduniketan-recruitment', true)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE POLICY "Public Read Recruitment Files"
+ON storage.objects FOR SELECT
+USING (bucket_id = 'eduniketan-recruitment');
+
+CREATE POLICY "Public Upload Recruitment Files"
+ON storage.objects FOR INSERT
+WITH CHECK (bucket_id = 'eduniketan-recruitment');
+
+CREATE POLICY "Public Delete Recruitment Files"
+ON storage.objects FOR DELETE
+USING (bucket_id = 'eduniketan-recruitment');
+
+-- ============================================================
+
 -- 1. Create Enquiries Table
 CREATE TABLE IF NOT EXISTS public.enquiries (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,

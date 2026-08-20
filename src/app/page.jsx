@@ -318,6 +318,80 @@ export default function HomePage() {
         <LiveFeedbackTicker />
       </section>
 
+      {/* Recruitment Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden gradient-bg-primary rounded-3xl shadow-2xl">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-blue-400/10 blur-3xl" />
+            <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-teal-400/15 blur-3xl" />
+          </div>
+          <div className="relative flex flex-col lg:flex-row items-center gap-8 p-8 sm:p-12">
+            <div className="flex-1 text-white text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-semibold mb-5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Now Hiring — Recruitment Open
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
+                Join the{' '}
+                <span className="bg-gradient-to-r from-cyan-300 to-teal-300 bg-clip-text text-transparent">Eduniketan</span>{' '}
+                Ecosystem
+              </h2>
+              <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-lg mb-6">
+                We're building India's most impactful campus placement technology. Explore open positions, internships, and campus drives — apply directly on our platform.
+              </p>
+              <Link
+                href="/recruitment"
+                className="inline-flex items-center gap-2 bg-white text-blue-900 font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-xl hover:bg-slate-50 transition-all duration-200 text-sm"
+              >
+                <GraduationCap className="w-4 h-4" />
+                View All Openings
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <div className="mt-8 grid grid-cols-3 gap-4">
+                {[{e:'🚀',l:'High-Impact Work'},{e:'🎓',l:'Learning Culture'},{e:'🤝',l:'Remote Friendly'}].map((p) => (
+                  <div key={p.l} className="text-center">
+                    <div className="text-2xl mb-1">{p.e}</div>
+                    <div className="text-white/80 text-xs font-semibold">{p.l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex-shrink-0 w-full max-w-xs lg:max-w-sm animate-float">
+              <svg viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <rect x="20" y="60" width="170" height="100" rx="14" fill="white" opacity="0.12" />
+                <rect x="35" y="78" width="90" height="8" rx="4" fill="white" opacity="0.5" />
+                <rect x="35" y="93" width="65" height="6" rx="3" fill="white" opacity="0.3" />
+                <rect x="35" y="110" width="120" height="24" rx="12" fill="white" opacity="0.2" />
+                <rect x="48" y="117" width="80" height="10" rx="5" fill="white" opacity="0.4" />
+                <rect x="210" y="40" width="170" height="120" rx="14" fill="white" opacity="0.1" />
+                <rect x="226" y="58" width="70" height="7" rx="3.5" fill="white" opacity="0.4" />
+                <rect x="226" y="72" width="100" height="6" rx="3" fill="white" opacity="0.25" />
+                <rect x="226" y="88" width="138" height="3" rx="1.5" fill="white" opacity="0.15" />
+                <rect x="226" y="88" width="90" height="3" rx="1.5" fill="rgba(52,211,153,0.8)" />
+                <rect x="226" y="98" width="138" height="3" rx="1.5" fill="white" opacity="0.15" />
+                <rect x="226" y="98" width="110" height="3" rx="1.5" fill="rgba(96,165,250,0.8)" />
+                <rect x="226" y="108" width="138" height="3" rx="1.5" fill="white" opacity="0.15" />
+                <rect x="226" y="108" width="60" height="3" rx="1.5" fill="rgba(251,191,36,0.8)" />
+                <rect x="80" y="185" width="240" height="110" rx="16" fill="white" opacity="0.14" />
+                <circle cx="155" cy="225" r="20" fill="rgba(52,211,153,0.25)" />
+                <path d="M146 225 L152 231 L164 218" stroke="rgba(52,211,153,1)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="185" y="213" width="115" height="8" rx="4" fill="white" opacity="0.5" />
+                <rect x="185" y="228" width="85" height="6" rx="3" fill="white" opacity="0.3" />
+                <rect x="185" y="242" width="105" height="6" rx="3" fill="white" opacity="0.2" />
+                <rect x="95" y="266" width="210" height="18" rx="9" fill="rgba(255,255,255,0.2)" />
+                <rect x="140" y="271" width="120" height="8" rx="4" fill="white" opacity="0.5" />
+                <circle cx="55" cy="30" r="18" fill="rgba(255,255,255,0.1)" />
+                <text x="46" y="36" fontSize="14" fill="white" opacity="0.8">🎓</text>
+                <circle cx="355" cy="200" r="16" fill="rgba(255,255,255,0.1)" />
+                <text x="346" y="206" fontSize="12" fill="white" opacity="0.8">🚀</text>
+                <circle cx="20" cy="200" r="14" fill="rgba(255,255,255,0.08)" />
+                <text x="12" y="206" fontSize="12" fill="white" opacity="0.7">⭐</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Banner Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="gradient-bg-primary rounded-3xl p-8 sm:p-14 text-center text-white relative overflow-hidden shadow-2xl space-y-6">

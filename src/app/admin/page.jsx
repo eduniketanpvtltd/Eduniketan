@@ -7,6 +7,7 @@ import { uploadGalleryPhoto } from '@/lib/supabase';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import RecruitmentAdminTab from '@/components/ui/RecruitmentAdminTab';
 import {
   Inbox,
   Star,
@@ -26,7 +27,8 @@ import {
   X,
   MapPin,
   Calendar,
-  Layers
+  Layers,
+  Briefcase
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
@@ -383,6 +385,17 @@ export default function AdminDashboardPage() {
           }`}
         >
           <Star className="w-4 h-4" /> Feedback Stream ({feedback.length})
+        </button>
+
+        <button
+          onClick={() => setActiveTab('recruitment')}
+          className={`pb-3 flex items-center gap-2 border-b-2 transition-colors ${
+            activeTab === 'recruitment'
+              ? 'border-blue-700 text-blue-700'
+              : 'border-transparent text-slate-500 hover:text-slate-900'
+          }`}
+        >
+          <Briefcase className="w-4 h-4" /> Recruitment Forms
         </button>
       </div>
 
@@ -934,6 +947,12 @@ export default function AdminDashboardPage() {
           </div>
         </div>
       )}
+
+      {/* Tab 4: Recruitment Forms */}
+      {activeTab === 'recruitment' && (
+        <RecruitmentAdminTab />
+      )}
     </div>
   );
 }
+
