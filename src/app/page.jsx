@@ -329,7 +329,7 @@ export default function HomePage() {
             <div className="flex-1 text-white text-center lg:text-left">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-semibold mb-5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Now Hiring — Recruitment Open
+                Now Hiring — 1 Opening Available
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">
                 Join the{' '}
