@@ -149,3 +149,6 @@ WITH CHECK (bucket_id = 'eduniketan-gallery');
 CREATE POLICY "Public Delete Access" 
 ON storage.objects FOR DELETE 
 USING (bucket_id = 'eduniketan-gallery');
+
+-- Add confirmation message column
+ALTER TABLE public.recruitment_forms ADD COLUMN IF NOT EXISTS confirmation_message TEXT DEFAULT 'Thank you for your application! We will review your details and get back to you soon.';

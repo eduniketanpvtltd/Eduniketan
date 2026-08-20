@@ -143,6 +143,7 @@ export const dbStore = {
       fields: Array.isArray(f.fields) ? f.fields : typeof f.fields === 'string' ? JSON.parse(f.fields) : [],
       isPublished: f.is_published,
       deadline: f.deadline,
+      confirmationMessage: f.confirmation_message,
       createdAt: f.created_at,
       updatedAt: f.updated_at,
     }));
@@ -160,6 +161,7 @@ export const dbStore = {
       fields: Array.isArray(data.fields) ? data.fields : typeof data.fields === 'string' ? JSON.parse(data.fields) : [],
       isPublished: data.is_published,
       deadline: data.deadline,
+      confirmationMessage: data.confirmation_message,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
     };
@@ -171,6 +173,7 @@ export const dbStore = {
       fields: Array.isArray(payload.fields) ? payload.fields : [],
       is_published: payload.isPublished || false,
       deadline: payload.deadline || null,
+      confirmation_message: payload.confirmationMessage || 'Thank you for your application! We will review your details and get back to you soon.',
     }]).select();
     if (error) throw error;
     const f = data[0];
@@ -181,6 +184,7 @@ export const dbStore = {
       fields: Array.isArray(f.fields) ? f.fields : [],
       isPublished: f.is_published,
       deadline: f.deadline,
+      confirmationMessage: f.confirmation_message,
       createdAt: f.created_at,
       updatedAt: f.updated_at,
     };
@@ -192,6 +196,7 @@ export const dbStore = {
     if (updates.fields !== undefined) supabaseUpdates.fields = updates.fields;
     if (updates.isPublished !== undefined) supabaseUpdates.is_published = updates.isPublished;
     if (updates.deadline !== undefined) supabaseUpdates.deadline = updates.deadline;
+    if (updates.confirmationMessage !== undefined) supabaseUpdates.confirmation_message = updates.confirmationMessage;
     supabaseUpdates.updated_at = new Date().toISOString();
 
     const { data, error } = await supabaseAdmin.from('recruitment_forms').update(supabaseUpdates).eq('id', id).select();
@@ -204,6 +209,7 @@ export const dbStore = {
       fields: Array.isArray(f.fields) ? f.fields : [],
       isPublished: f.is_published,
       deadline: f.deadline,
+      confirmationMessage: f.confirmation_message,
       createdAt: f.created_at,
       updatedAt: f.updated_at,
     };
