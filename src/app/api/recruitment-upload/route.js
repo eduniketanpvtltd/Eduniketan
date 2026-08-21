@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request) {
   try {
@@ -33,7 +33,7 @@ export async function POST(request) {
       !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('xyzcompany');
 
     if (isSupabaseConfigured) {
-      const { data, error } = await supabase.storage
+      const { data, error } = await supabaseAdmin.storage
         .from('eduniketan-recruitment')
         .upload(filePath, buffer, {
           contentType: file.type || 'application/octet-stream',
@@ -49,7 +49,7 @@ export async function POST(request) {
         return NextResponse.json({ success: true, url: dataUrl, fileName: file.name, fallback: true });
       }
 
-      const { data: publicUrlData } = supabase.storage
+      const { data: publicUrlData } = supabaseAdmin.storage
         .from('eduniketan-recruitment')
         .getPublicUrl(filePath);
 
