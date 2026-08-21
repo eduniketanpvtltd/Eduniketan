@@ -311,6 +311,7 @@ function DynamicField({ field, value, onChange, error }) {
             return (
               <motion.label
                 key={opt}
+                onClick={() => toggle(opt)}
                 whileTap={{ scale: 0.97 }}
                 className={`inline-flex items-center gap-2.5 px-4 py-3 cursor-pointer rounded-xl border-2 transition-all duration-200 text-sm font-medium select-none ${
                   isChecked
