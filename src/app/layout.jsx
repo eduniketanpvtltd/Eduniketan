@@ -9,6 +9,9 @@ export const metadata = {
   title: 'Eduniketan Private Limited — Institutional Placement & Training Solutions',
   description: 'Eduniketan provides autograder coding platforms (TheEduCode), mentor-led training (TheEduLive), placement bootcamps (TheEduBootCamp), and full PEP integration for top universities.',
   keywords: ['Eduniketan', 'TheEduCode', 'TheEduLive', 'Placement Mastery Program', 'Campus Placement Training', 'Autograder Platform', 'LPU PEP'],
+  verification: {
+    google: 'google757520764660802f',
+  },
   other: {
     'facebook-domain-verification': 'y621bqxd7gvduob9mihlejv9wmbl5d',
   },
